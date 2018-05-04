@@ -22,6 +22,10 @@ We can build **resiliant**, **fault-tolerant** systems that can automatically re
 Netflix's *Chaos Monkey* is a tool to test fault-tolerance.
 
 #### Hardware faults
+
+Disk corruption, etc
+
+Solutions:
   - Use multiple servers that are less reliable
   - Use software fault-tolerance techniques to recover from servers going down
 
@@ -30,4 +34,10 @@ Scalability - reasonable ways to deal with growth in volume and complexity
 Maintainability - engineers should be able to productively maintain current functionality and adapt to new use cases
 
 #### Software errors
+
+While hardware faults are independent across nodes, software bugs are not since all nodes run same or inter-dependent software. No overarching solution, but smaller helpful solutions exist:
+
+1. Careful software design with thorough testing
+2. System monitoring in production
+3. Continously check guaranteed assumptions
 
