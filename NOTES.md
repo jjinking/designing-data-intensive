@@ -41,3 +41,12 @@ While hardware faults are independent across nodes, software bugs are not since 
 2. System monitoring in production
 3. Continously check guaranteed assumptions
 
+#### Human errors
+
+Bad interaction or configuration of system
+
+- Make it easy to do the "right" thing
+- Provide sandboxing env for people to try different things, so they don't mess up production system
+- Test thoroughly: unit, integration & manual
+- Set up quick and easy recovery from failures - easy rolling back of config, rollout new code gradually, tools for recomputing data
+- Metrics - performance, error
