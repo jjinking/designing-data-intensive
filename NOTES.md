@@ -50,3 +50,11 @@ Bad interaction or configuration of system
 - Test thoroughly: unit, integration & manual
 - Set up quick and easy recovery from failures - easy rolling back of config, rollout new code gradually, tools for recomputing data
 - Metrics - performance, error
+
+### Scalability
+
+A system's ability to cope with increased load
+
+Multi-dimensional, only makes sense to talk about scalability w.r.t a specific type of load, i.e. data transfer load, cpu load, etc
+
+Use **load parameters** to describe current load, i.e. requests per second to a web server
