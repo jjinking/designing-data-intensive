@@ -17,6 +17,8 @@ Software works correctly despite hardware/software faults or human error
 
 **failure**: the system as a whole stops providing service
 
+Almost impossible for system to not have faults, so we design systems to prevent faults from becoming failures
+
 We can build **resiliant**, **fault-tolerant** systems that can automatically recover from certian kinds of faults, not all.
 
 Netflix's *Chaos Monkey* is a tool to test fault-tolerance.
@@ -25,9 +27,10 @@ Netflix's *Chaos Monkey* is a tool to test fault-tolerance.
 
 Disk corruption, etc
 
-Solutions:
-  - Use multiple servers that are less reliable
-  - Use software fault-tolerance techniques to recover from servers going down
+Used to have smaller number of servers with hot-swappable components, but nowdays, applications use much more servers, so the pattern has changed. No longer trying to prevent loss of entire machine.
+
+  - Use multiple servers that are less reliable (cloud), so that entire machines can fail, but it's okay
+  - Use software fault-tolerance techniques to recover from machines going down
 
 Scalability - reasonable ways to deal with growth in volume and complexity
 
