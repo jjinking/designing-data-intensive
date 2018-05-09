@@ -31,6 +31,7 @@ Used to have smaller number of servers with hot-swappable components, but nowday
 
   - Use multiple servers that are less reliable (cloud), so that entire machines can fail, but it's okay
   - Use software fault-tolerance techniques to recover from machines going down
+  - Enables zero downtime for maintenance and upgrades via rolling updates
 
 Scalability - reasonable ways to deal with growth in volume and complexity
 
@@ -42,11 +43,11 @@ While hardware faults are independent across nodes, software bugs are not since 
 
 1. Careful software design with thorough testing
 2. System monitoring in production
-3. Continously check guaranteed assumptions
+3. Continously check guaranteed assumptions, i.e. rate of produce to queue <= rate of consume from queue
 
 #### Human errors
 
-Bad interaction or configuration of system
+Bad interaction or configuration of system are main causes of outages
 
 - Make it easy to do the "right" thing
 - Provide sandboxing env for people to try different things, so they don't mess up production system
@@ -61,3 +62,23 @@ A system's ability to cope with increased load
 Multi-dimensional, only makes sense to talk about scalability w.r.t a specific type of load, i.e. data transfer load, cpu load, etc
 
 Use **load parameters** to describe current load, i.e. requests per second to a web server
+
+#### Example: Twitter
+
+Posting tweets
+
+- 4.6k posts/sec avg
+- 12k posts/sec peak
+
+User home timeline
+
+- 300k requests/sec
+
+Twitter's challenge is to fan out
+
+- Posts are easy
+- User home timeline require complex joining of db to list all posts by users who current user is following
+- Twitter uses a caching method to enqueue new tweets to timeline queues per user
+- This involves more computing at write time rather than read time, since the rate of reads is much higher than rate of writes
+  - [jjinking] But if it's crucial to have fast reads, even if rate of reads is much lower, it might be better to do it this way
+
