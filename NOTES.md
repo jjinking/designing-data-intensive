@@ -76,9 +76,21 @@ User home timeline
 
 Twitter's challenge is to fan out
 
+Approach 1
+
 - Posts are easy
 - User home timeline require complex joining of db to list all posts by users who current user is following
-- Twitter uses a caching method to enqueue new tweets to timeline queues per user
+
+Approach 2
+
+- Use a caching method to enqueue new tweets to timeline queues per user
 - This involves more computing at write time rather than read time, since the rate of reads is much higher than rate of writes
-  - [jjinking] But if it's crucial to have fast reads, even if rate of reads is much lower, it might be better to do it this way
+  - [jjinking] But if it's crucial to have fast reads, even if read rate is much lower, it might be better to do it this way
+- Problem: Users with millions of followers require writes to millions of timelines
+- Requirement: deliver new posts within 5 seconds
+
+Approach 3
+
+- Hybrid method
+- Don't fan-out celeb tweets. Just fetch them when reading timeline, like, Approach 1
 
